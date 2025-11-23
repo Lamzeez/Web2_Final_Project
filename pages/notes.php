@@ -37,17 +37,6 @@ if ($result) {
 }
 
 $conn->close();
-$modal_message = '';
-if (isset($_SESSION['note_update_success']) && $_SESSION['note_update_success']) {
-    $modal_message = 'Note updated successfully!';
-    unset($_SESSION['note_update_success']);
-} elseif (isset($_SESSION['note_create_success']) && $_SESSION['note_create_success']) {
-    $modal_message = 'Note created successfully!';
-    unset($_SESSION['note_create_success']);
-} elseif (isset($_SESSION['delete_success']) && $_SESSION['delete_success']) {
-    $modal_message = 'Note deleted successfully!';
-    unset($_SESSION['delete_success']);
-}
 ?>
 <h2 class="mb-4">Effortless Notes</h2>
 
@@ -103,10 +92,19 @@ if (isset($_SESSION['note_update_success']) && $_SESSION['note_update_success'])
 include_once '../includes/footer.php';
 ?>
 
+<?php if (isset($_SESSION['note_update_success']) && $_SESSION['note_update_success']): ?>
 <script>
-<?php if (!empty($modal_message)): ?>
-document.addEventListener('DOMContentLoaded', function() {
-    showSuccessModal('<?php echo $modal_message; ?>');
-});
-<?php endif; ?>
+    alert('Note updated successfully!');
 </script>
+<?php unset($_SESSION['note_update_success']); ?>
+<?php elseif (isset($_SESSION['note_create_success']) && $_SESSION['note_create_success']): ?>
+<script>
+    alert('Note created successfully!');
+</script>
+<?php unset($_SESSION['note_create_success']); ?>
+<?php elseif (isset($_SESSION['delete_success']) && $_SESSION['delete_success']): ?>
+<script>
+    alert('Note deleted successfully!');
+</script>
+<?php unset($_SESSION['delete_success']); ?>
+<?php endif; ?>

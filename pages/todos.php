@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once '../includes/header.php';
 include_once '../includes/db.php';
 include_once '../includes/functions.php';
@@ -48,17 +49,6 @@ if ($result) {
 }
 
 $conn->close();
-$modal_message = '';
-if (isset($_SESSION['todo_update_success']) && $_SESSION['todo_update_success']) {
-    $modal_message = 'To-Do updated successfully!';
-    unset($_SESSION['todo_update_success']);
-} elseif (isset($_SESSION['todo_create_success']) && $_SESSION['todo_create_success']) {
-    $modal_message = 'To-Do created successfully!';
-    unset($_SESSION['todo_create_success']);
-} elseif (isset($_SESSION['delete_success']) && $_SESSION['delete_success']) {
-    $modal_message = 'To-Do deleted successfully!';
-    unset($_SESSION['delete_success']);
-}
 ?>
 <h2 class="mb-4">Gentle To-Dos</h2>
 
@@ -116,10 +106,19 @@ if (isset($_SESSION['todo_update_success']) && $_SESSION['todo_update_success'])
 include_once '../includes/footer.php';
 ?>
 
+<?php if (isset($_SESSION['todo_update_success']) && $_SESSION['todo_update_success']): ?>
 <script>
-<?php if (!empty($modal_message)): ?>
-document.addEventListener('DOMContentLoaded', function() {
-    showSuccessModal('<?php echo $modal_message; ?>');
-});
-<?php endif; ?>
+    alert('To-Do updated successfully!');
 </script>
+<?php unset($_SESSION['todo_update_success']); ?>
+<?php elseif (isset($_SESSION['todo_create_success']) && $_SESSION['todo_create_success']): ?>
+<script>
+    alert('To-Do created successfully!');
+</script>
+<?php unset($_SESSION['todo_create_success']); ?>
+<?php elseif (isset($_SESSION['delete_success']) && $_SESSION['delete_success']): ?>
+<script>
+    alert('To-Do deleted successfully!');
+</script>
+<?php unset($_SESSION['delete_success']); ?>
+<?php endif; ?>
