@@ -23,7 +23,10 @@ $conn = connectDB();
 $stmt = $conn->prepare("DELETE FROM notes WHERE id = ? AND user_id = ?");
 $stmt->bind_param("ii", $note_id, $user_id);
 $stmt->execute();
+<<<<<<< HEAD
 $_SESSION['delete_success'] = true;
+=======
+>>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
 $stmt->close();
 
 $conn->close();

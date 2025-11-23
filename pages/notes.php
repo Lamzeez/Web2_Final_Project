@@ -35,6 +35,7 @@ if ($result) {
 }
 
 $conn->close();
+<<<<<<< HEAD
 
 $prompt_message = '';
 if (isset($_SESSION['note_update_success']) && $_SESSION['note_update_success']) {
@@ -50,6 +51,10 @@ if (isset($_SESSION['note_update_success']) && $_SESSION['note_update_success'])
     <?php echo $prompt_message; ?>
 </div>
 
+=======
+?>
+
+>>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
 <h2 class="mb-4">Effortless Notes</h2>
 
 <div class="row">
@@ -100,6 +105,7 @@ if (isset($_SESSION['note_update_success']) && $_SESSION['note_update_success'])
     </div>
 </div>
 
+<<<<<<< HEAD
 <script>
 <?php if (!empty($prompt_message)): ?>
     const successContainer = document.getElementById('success-container');
@@ -110,6 +116,8 @@ if (isset($_SESSION['note_update_success']) && $_SESSION['note_update_success'])
 <?php endif; ?>
 </script>
 
+=======
+>>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
 <?php
 include_once '../includes/footer.php';
 ?>
