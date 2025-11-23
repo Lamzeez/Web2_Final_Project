@@ -1,0 +1,1 @@
+Now please add a Logout confirmation, make the login success prompt float at the center of the login.php page so that it would look like it's floating above the login form, add a much clearer outline to sub-containers on index.php, home.php, notes.php, and todos.php
