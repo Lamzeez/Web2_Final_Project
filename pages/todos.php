@@ -20,7 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_todo'])) {
     if (!empty($task)) {
         $stmt = $conn->prepare("INSERT INTO todos (user_id, task, due_date) VALUES (?, ?, ?)");
         $stmt->bind_param("iss", $user_id, $task, $due_date);
-        $stmt->execute();
+        if ($stmt->execute()) {
+            $_SESSION['todo_create_success'] = true;
+        }
         $stmt->close();
         header("Location: todos.php");
         exit();
@@ -46,26 +48,18 @@ if ($result) {
 }
 
 $conn->close();
-<<<<<<< HEAD
-
-$prompt_message = '';
+$modal_message = '';
 if (isset($_SESSION['todo_update_success']) && $_SESSION['todo_update_success']) {
-    $prompt_message = 'To-Do updated successfully! Redirecting...';
+    $modal_message = 'To-Do updated successfully!';
     unset($_SESSION['todo_update_success']);
+} elseif (isset($_SESSION['todo_create_success']) && $_SESSION['todo_create_success']) {
+    $modal_message = 'To-Do created successfully!';
+    unset($_SESSION['todo_create_success']);
 } elseif (isset($_SESSION['delete_success']) && $_SESSION['delete_success']) {
-    $prompt_message = 'To-Do deleted successfully! Redirecting...';
+    $modal_message = 'To-Do deleted successfully!';
     unset($_SESSION['delete_success']);
 }
 ?>
-
-<div id="success-container" class="floating-success" style="display: none;">
-    <?php echo $prompt_message; ?>
-</div>
-
-=======
-?>
-
->>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
 <h2 class="mb-4">Gentle To-Dos</h2>
 
 <div class="row">
@@ -118,19 +112,13 @@ if (isset($_SESSION['todo_update_success']) && $_SESSION['todo_update_success'])
     </div>
 </div>
 
-<<<<<<< HEAD
 <script>
-<?php if (!empty($prompt_message)): ?>
-    const successContainer = document.getElementById('success-container');
-    successContainer.style.display = 'block';
-    setTimeout(function() {
-        window.location.href = "<?php echo BASE_URL; ?>pages/todos.php";
-    }, 2000);
+<?php if (!empty($modal_message)): ?>
+document.addEventListener('DOMContentLoaded', function() {
+    showSuccessModal('<?php echo $modal_message; ?>');
+});
 <?php endif; ?>
 </script>
-
-=======
->>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
 <?php
 include_once '../includes/footer.php';
 ?>

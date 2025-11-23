@@ -1,6 +1,8 @@
 <?php
 // Start session on all pages
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once 'config.php';
 
 // Common header for Notecore pages

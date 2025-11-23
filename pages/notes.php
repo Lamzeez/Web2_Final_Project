@@ -20,7 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_note'])) {
     if (!empty($title)) {
         $stmt = $conn->prepare("INSERT INTO notes (user_id, title, content) VALUES (?, ?, ?)");
         $stmt->bind_param("iss", $user_id, $title, $content);
-        $stmt->execute();
+        if ($stmt->execute()) {
+            $_SESSION['note_create_success'] = true;
+        }
         $stmt->close();
         header("Location: notes.php");
         exit();
@@ -35,26 +37,18 @@ if ($result) {
 }
 
 $conn->close();
-<<<<<<< HEAD
-
-$prompt_message = '';
+$modal_message = '';
 if (isset($_SESSION['note_update_success']) && $_SESSION['note_update_success']) {
-    $prompt_message = 'Note updated successfully! Redirecting...';
+    $modal_message = 'Note updated successfully!';
     unset($_SESSION['note_update_success']);
+} elseif (isset($_SESSION['note_create_success']) && $_SESSION['note_create_success']) {
+    $modal_message = 'Note created successfully!';
+    unset($_SESSION['note_create_success']);
 } elseif (isset($_SESSION['delete_success']) && $_SESSION['delete_success']) {
-    $prompt_message = 'Note deleted successfully! Redirecting...';
+    $modal_message = 'Note deleted successfully!';
     unset($_SESSION['delete_success']);
 }
 ?>
-
-<div id="success-container" class="floating-success" style="display: none;">
-    <?php echo $prompt_message; ?>
-</div>
-
-=======
-?>
-
->>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
 <h2 class="mb-4">Effortless Notes</h2>
 
 <div class="row">
@@ -105,19 +99,13 @@ if (isset($_SESSION['note_update_success']) && $_SESSION['note_update_success'])
     </div>
 </div>
 
-<<<<<<< HEAD
 <script>
-<?php if (!empty($prompt_message)): ?>
-    const successContainer = document.getElementById('success-container');
-    successContainer.style.display = 'block';
-    setTimeout(function() {
-        window.location.href = "<?php echo BASE_URL; ?>pages/notes.php";
-    }, 2000);
+<?php if (!empty($modal_message)): ?>
+document.addEventListener('DOMContentLoaded', function() {
+    showSuccessModal('<?php echo $modal_message; ?>');
+});
 <?php endif; ?>
 </script>
-
-=======
->>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
 <?php
 include_once '../includes/footer.php';
 ?>

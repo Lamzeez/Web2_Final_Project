@@ -10,6 +10,18 @@
         </div>
     </footer>
 
+    <!-- Success Modal -->
+    <div id="success-modal-overlay" class="modal-overlay">
+        <div id="success-modal" class="modal">
+            <div class="modal-content">
+                <p id="success-modal-message"></p>
+            </div>
+            <div class="modal-footer">
+                <button id="success-modal-done" class="btn btn-primary">Done</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->

@@ -27,19 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_todo'])) {
     if (!empty($task)) {
         $stmt = $conn->prepare("UPDATE todos SET task = ?, due_date = ? WHERE id = ? AND user_id = ?");
         $stmt->bind_param("ssii", $task, $due_date, $todo_id, $user_id);
-<<<<<<< HEAD
         if ($stmt->execute()) {
             $_SESSION['todo_update_success'] = true;
             header("Location: todos.php");
             exit();
         }
         $stmt->close();
-=======
-        $stmt->execute();
-        $stmt->close();
-        header("Location: todos.php");
-        exit();
->>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
     }
 }
 
@@ -58,7 +51,6 @@ $stmt->close();
 $conn->close();
 ?>
 
-<<<<<<< HEAD
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
@@ -81,23 +73,6 @@ $conn->close();
             </div>
         </div>
     </div>
-=======
-<h2>Edit To-Do</h2>
-
-<div class="todo-editor">
-    <form action="edit_todo.php?id=<?php echo $todo_id; ?>" method="POST">
-        <div class="form-group">
-            <label for="task">Task:</label>
-            <input type="text" id="task" name="task" value="<?php echo htmlspecialchars($todo['task']); ?>" required>
-        </div>
-        <div class="form-group">
-            <label for="due_date">Due Date (Optional):</label>
-            <input type="date" id="due_date" name="due_date" value="<?php echo htmlspecialchars($todo['due_date']); ?>">
-        </div>
-        <button type="submit" name="update_todo" class="btn btn-primary">Update To-Do</button>
-        <a href="todos.php" class="btn btn-secondary">Cancel</a>
-    </form>
->>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
 </div>
 
 <?php

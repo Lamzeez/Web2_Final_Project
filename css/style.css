@@ -189,16 +189,6 @@ footer.bg-dark-custom .container {
     min-height: 40px;
 }
 
-/* --- Animations --- */
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-.fade-out {
-    animation: fadeOut 3s forwards;
-}
-
 /* --- Floating Success Prompt --- */
 .floating-success {
     position: fixed;
@@ -213,3 +203,49 @@ footer.bg-dark-custom .container {
     display: none; /* Initially hidden */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
+
+/* --- Success Modal --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1001;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.modal-content {
+    margin-bottom: 2rem;
+}
+
+.modal-footer .btn {
+    width: 100px;
+}
+
+/* --- Animations --- */

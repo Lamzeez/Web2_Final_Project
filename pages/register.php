@@ -172,36 +172,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         color: var(--dark-color);
         text-decoration: none;
     }
-<<<<<<< HEAD
-=======
-    .success-prompt {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(142, 218, 229, 0.9);
-        color: var(--dark-color);
-        text-align: center;
-        padding-top: 40%;
-        border-radius: 12px;
-    }
-    .success-prompt h2 {
-        font-size: 2rem;
-    }
->>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
   </style>
 </head>
 <body>
 
-<<<<<<< HEAD
 <div id="success-container" class="floating-success" style="display: none;">
     Registration successful! Redirecting...
 </div>
 
-=======
->>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
 <div class="container">
     <a href="<?php echo BASE_URL; ?>index.php" class="back-button"><i class="fas fa-home"></i></a>
   <form id="registerForm" method="POST" action="register.php">
@@ -246,13 +224,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button type="submit">Register</button>
     <div class="switch">Already have an account? <a href="<?php echo BASE_URL; ?>pages/login.php">Login</a></div>
   </form>
-<<<<<<< HEAD
-=======
-  <div class="success-prompt" id="successPrompt">
-      <h2>Registration Successful!</h2>
-      <p>You can now <a href="<?php echo BASE_URL; ?>pages/login.php">login</a>.</p>
-  </div>
->>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
 </div>
 
 <script>
@@ -277,15 +248,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   });
 
   <?php if ($registration_success): ?>
-<<<<<<< HEAD
     const successContainer = document.getElementById('success-container');
     successContainer.style.display = 'block';
     setTimeout(function() {
         window.location.href = "<?php echo BASE_URL; ?>pages/login.php";
     }, 2000);
-=======
-    document.getElementById('successPrompt').style.display = 'block';
->>>>>>> b2222f4bea245cb3b0c28215182074daee2b7964
   <?php endif; ?>
 </script>
 
