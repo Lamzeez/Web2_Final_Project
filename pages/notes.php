@@ -99,6 +99,10 @@ if (isset($_SESSION['note_update_success']) && $_SESSION['note_update_success'])
     </div>
 </div>
 
+<?php
+include_once '../includes/footer.php';
+?>
+
 <script>
 <?php if (!empty($modal_message)): ?>
 document.addEventListener('DOMContentLoaded', function() {
@@ -106,6 +110,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 <?php endif; ?>
 </script>
-<?php
-include_once '../includes/footer.php';
-?>

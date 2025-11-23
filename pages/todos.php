@@ -112,6 +112,10 @@ if (isset($_SESSION['todo_update_success']) && $_SESSION['todo_update_success'])
     </div>
 </div>
 
+<?php
+include_once '../includes/footer.php';
+?>
+
 <script>
 <?php if (!empty($modal_message)): ?>
 document.addEventListener('DOMContentLoaded', function() {
@@ -119,6 +123,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 <?php endif; ?>
 </script>
-<?php
-include_once '../includes/footer.php';
-?>
